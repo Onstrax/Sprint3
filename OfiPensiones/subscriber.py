@@ -41,7 +41,7 @@ def callback(ch, method, properties, body):
     topic = method.routing_key.split('.')
     institucion = get_institucion(topic[0])
     create_recibo_object(id,
-        institucion, payload['valor'], payload['tipo'], payload['estado'], topic[0] + topic[1])
+        institucion, payload['valor'], payload['tipo'], payload['estado'])
     if institucion.name == 'Temperature':
         check_alarm(payload['valor'])
     print("Recibo :%r" % (str(payload)))
