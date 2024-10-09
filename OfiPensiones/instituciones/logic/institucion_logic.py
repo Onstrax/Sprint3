@@ -18,3 +18,11 @@ def create_institucion(form):
     institucion = form.save()
     institucion.save()
     return ()
+
+def get_institucion_by_name(name):
+    try:
+        institucion = Institucion.objects.get(name=name)
+        return (institucion)
+    except:
+        institucion = None
+        return (institucion)
