@@ -7,7 +7,7 @@ rabbit_host = 'host'
 rabbit_user = 'monitoring_user'
 rabbit_password = 'isis2503'
 exchange = 'ofipensiones_recibos'
-topic = 'Institucion.A.Recibo'
+topic = 'InstitucionA.Recibo'
 
 connection = pika.BlockingConnection(
     pika.ConnectionParameters(host=rabbit_host, credentials=pika.PlainCredentials(rabbit_user, rabbit_password)))

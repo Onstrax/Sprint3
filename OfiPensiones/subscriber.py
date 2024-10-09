@@ -7,12 +7,12 @@ import django
 rabbit_host = 'host'
 rabbit_user = 'monitoring_user'
 rabbit_password = 'isis2503'
-exchange = 'ofipensiones_recibo'
-topics = ['Institucion.A.#']
+exchange = 'ofipensiones_recibos'
+topics = ['InstitucionA.#']
 
 
-path.append('monitoring/settings.py')
-environ.setdefault('DJANGO_SETTINGS_MODULE', 'monitoring.settings')
+path.append('OfiPensiones/settings.py')
+environ.setdefault('DJANGO_SETTINGS_MODULE', 'OfiPensiones.settings')
 django.setup()
 
 from recibos.logic.logic_recibo import create_recibo_object
@@ -34,16 +34,18 @@ for topic in topics:
 
 print('> Waiting recibos. To exit press CTRL+C')
 
-
+id = 0
 def callback(ch, method, properties, body):
+    global id
     payload = json.loads(body.decode('utf8').replace("'", '"'))
     topic = method.routing_key.split('.')
-    variable = get_institucion(topic[2])
-    create_recibo_object(
-        variable, payload['valor'], payload['tipo'], payload['estado'], topic[0] + topic[1] + topic[2])
-    if variable.name == 'Temperature':
+    institucion = get_institucion(topic[0])
+    create_recibo_object(id,
+        institucion, payload['valor'], payload['tipo'], payload['estado'], topic[0] + topic[1])
+    if institucion.name == 'Temperature':
         check_alarm(payload['valor'])
     print("Recibo :%r" % (str(payload)))
+    id+=1
 
 
 channel.basic_consume(
