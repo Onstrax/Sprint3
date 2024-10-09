@@ -17,11 +17,13 @@ channel.exchange_declare(exchange=exchange, exchange_type='topic')
 
 print('> Sending recibos. To exit press CTRL+C')
 
-while True:
+cant = 0
+while cant < 300:
     valor = round(uniform(1000000, 1000000000), 1)
     payload = "{'valor':%r,'tipo':'Cobro','estado':'Generado'}" % (valor)
     channel.basic_publish(exchange=exchange, routing_key=topic, body=payload)
-    print("Recibo con valor de: %r" % (valor))
+    print("Recibo de %s con valor de: %r" % (topic.split('.')[0], valor))
+    cant+=1
     time.sleep(1)
 
 connection.close()

@@ -8,7 +8,7 @@ rabbit_host = 'host'
 rabbit_user = 'monitoring_user'
 rabbit_password = 'isis2503'
 exchange = 'ofipensiones_recibos'
-topics = ['InstitucionA.#']
+topics = ['InstitucionA.#','InstitucionB.#','InstitucionC.#']
 
 
 path.append('OfiPensiones/settings.py')
