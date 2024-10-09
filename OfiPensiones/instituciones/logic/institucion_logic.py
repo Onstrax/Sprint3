@@ -1,7 +1,8 @@
 from ..models import Institucion
+
 def get_instituciones():
-    instituciones = Institucion.objects.all()
-    return instituciones
+    queryset = Institucion.objects.all()
+    return (queryset)
 
 def get_institucion(var_pk):
     institucion = Institucion.objects.get(pk=var_pk)
@@ -13,7 +14,7 @@ def update_institucion(var_pk, new_var):
     institucion.save()
     return institucion
 
-def create_institucion(var):
-    institucion = institucion(name=var["name"])
+def create_institucion(form):
+    institucion = form.save()
     institucion.save()
-    return institucion
+    return ()
