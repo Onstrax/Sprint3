@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-^sg$-na8=eg-hhv#+2&rwvz81mmgze($0i(aa3n$zne354ohmo'
+SECRET_KEY = 'svm_)tpa-o^gkn@81sel&lapq2jc7^^-n9c+4y&f9rymz$kum_'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -78,11 +78,11 @@ WSGI_APPLICATION = 'OfiPensiones.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': "ofipensiones",
-        'USER': "juanda1702",
-        'PASSWORD': "juanda1702",
+        'NAME': "ofipensiones-db",
+        'USER': "ofipensiones_user",
+        'PASSWORD': "ofipensiones",
         'HOST': "localhost",
-        'PORT': "5432"
+        'PORT': ""
     }
 }
 

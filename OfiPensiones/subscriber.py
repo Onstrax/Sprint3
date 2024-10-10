@@ -5,8 +5,8 @@ from os import environ
 import django
 
 rabbit_host = 'host'
-rabbit_user = 'monitoring_user'
-rabbit_password = 'isis2503'
+rabbit_user = 'ofipensiones_user'
+rabbit_password = 'ofipensiones'
 exchange = 'ofipensiones_recibos'
 topics = ['InstitucionA.#','InstitucionB.#','InstitucionC.#']
 
@@ -34,18 +34,15 @@ for topic in topics:
 
 print('> Waiting recibos. To exit press CTRL+C')
 
-id = 0
 def callback(ch, method, properties, body):
-    global id
     payload = json.loads(body.decode('utf8').replace("'", '"'))
     topic = method.routing_key.split('.')
     institucion = get_institucion(topic[0])
-    create_recibo_object(id,
+    create_recibo_object(
         institucion, payload['valor'], payload['tipo'], payload['estado'])
     if institucion.name == 'Temperature':
         check_alarm(payload['valor'])
     print("Recibo :%r" % (str(payload)))
-    id+=1
 
 
 channel.basic_consume(

@@ -8,7 +8,7 @@ from .logic.logic_recibo import create_recibo, get_recibos
 def recibo_list(request):
     recibos = get_recibos()
     context = {
-        'measurement_list': recibos
+        'recibo_list': recibos
     }
     return render(request, 'Recibo/recibos.html', context)
 

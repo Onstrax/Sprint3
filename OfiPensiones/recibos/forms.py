@@ -6,7 +6,6 @@ class ReciboForm(forms.ModelForm):
         model = Recibo
         fields = [
             'institucion',
-            'numero',
             #'fecha',
             'valor',
             'tipo',
@@ -15,7 +14,6 @@ class ReciboForm(forms.ModelForm):
 
         labels = {
             'institucion' : 'Institucion',
-            'numero' : 'Numero',
             #'fecha' : 'Date',
             'valor' : 'Valor',
             'tipo' : 'Tipo',

@@ -9,9 +9,8 @@ def create_recibo(form):
     recibo.save()
     return ()
 
-def create_recibo_object(numero, institucion_id, valor, tipo, estado):
+def create_recibo_object(institucion_id, valor, tipo, estado):
     recibo = Recibo()
-    recibo.numero = numero
     recibo.institucion = institucion_id
     recibo.valor = valor
     recibo.tipo = tipo
