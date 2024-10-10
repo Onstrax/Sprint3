@@ -4,11 +4,15 @@ from sys import path
 from os import environ
 import django
 
-rabbit_host = 'host'
+rabbit_host = '10.128.0.13'
 rabbit_user = 'ofipensiones_user'
 rabbit_password = 'ofipensiones'
 exchange = 'ofipensiones_recibos'
-topics = ['InstitucionA.#','InstitucionB.#','InstitucionC.#']
+topics=['InstitucionA.#','InstitucionB.#','InstitucionC.#',
+        'InstitucionD.#','InstitucionE.#','InstitucionF.#',
+        'InstitucionG.#','InstitucionH.#','InstitucionI.#',
+        'InstitucionJ.#','InstitucionK.#','InstitucionL.#',
+        'InstitucionM.#','InstitucionN.#','InstitucionO.#']
 
 
 path.append('OfiPensiones/settings.py')
@@ -34,8 +38,11 @@ for topic in topics:
 
 print('> Waiting recibos. To exit press CTRL+C')
 
+recibos = []
 def callback(ch, method, properties, body):
+    global id
     payload = json.loads(body.decode('utf8').replace("'", '"'))
+    recibos.append(payload)
     topic = method.routing_key.split('.')
     institucion = get_institucion(topic[0])
     create_recibo_object(
@@ -43,6 +50,7 @@ def callback(ch, method, properties, body):
     if institucion.name == 'Temperature':
         check_alarm(payload['valor'])
     print("Recibo :%r" % (str(payload)))
+    print(len(recibos))
 
 
 channel.basic_consume(
