@@ -15,7 +15,7 @@ class ReciboForm(forms.ModelForm):
         labels = {
             'institucion' : 'Institucion',
             #'fecha' : 'Date',
-            'valor' : 'Valor',
+            'valor' : 'Valorr',
             'tipo' : 'Tipo',
             'estado' : 'Estado',
         }
