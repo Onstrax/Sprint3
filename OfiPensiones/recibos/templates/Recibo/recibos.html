@@ -24,8 +24,8 @@
                     <table class="table table-hover">
                         <thead>
                         <tr style="color:#0E2EB0">
-                            <th font color="red">Recibo</th>
-                            <th>Date</th>
+                            <th font color="red">Institución</th>
+                            <th>Fecha</th>
                             <th>Valor</th>
                             <th>Tipo</th>
                             <th>Estado</th>
@@ -37,7 +37,7 @@
                         <tr>
                             <td>{{ recibo.institucion.name }}</td>
                             <td>{{ recibo.fecha }}</td>
-                            <td>{{ recibo.valor }}</td>
+                            <td>{{ recibo.valor|floatformat:1 }} COP</td>
                             <td>{{ recibo.tipo }}</td>
                             <td>{{ recibo.estado }}</td>
                         </tr>
